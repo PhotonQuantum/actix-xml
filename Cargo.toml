@@ -1,6 +1,6 @@
 [package]
 name = "actix-xml"
-version = "0.1.1"
+version = "0.2.0-beta.0"
 authors = ["LightQuantum <self@lightquantum.me>"]
 description = "XML extractor for actix-web"
 edition = "2018"
@@ -17,11 +17,11 @@ exclude = [
 
 [features]
 default = ["compress"]
-compress = ["actix-web/compress"]
+compress = []
 encoding = ["quick-xml/encoding"]
 
 [dependencies]
-actix-web = { version = "3.3.2", default-features = false }
+actix-web = { version = "4.0.0-beta.8", default-features = false }
 quick-xml = { version = "0.22", features = ["serialize"] }
 serde = "1.0"
 thiserror = "1.0"
@@ -30,5 +30,6 @@ futures = "0.3"
 log = "0.4"
 
 [dev-dependencies]
+actix-web = { version = "4.0.0-beta.8" }
 serde = { version = "1.0", features = ["derive"] }
 actix-rt = "2.2"

@@ -39,8 +39,8 @@ fn main() {
 - `encoding`: support non utf-8 payload
 - `compress`(default): enable actix-web `compress` support
 
-If you've removed `compress` feature flag for actix-web, make sure to remove it by setting `default-features=false`, or
-it will be re-enabled for actix-web.
+If you've removed all compress feature flag for actix-web, make sure to remove `compress` by setting `default-features=false`,
+or a compile error may occur.
 
 ## Version Support
 

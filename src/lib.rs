@@ -34,8 +34,8 @@
 //! - `encoding`: support non utf-8 payload
 //! - `compress`(default): enable actix-web `compress` support
 //!
-//! If you've removed `compress` feature flag for actix-web, make sure to remove it by setting `default-features=false`, or
-//! it will be re-enabled for actix-web.
+//! If you've removed all compress feature flag for actix-web, make sure to remove `compress` by setting `default-features=false`,
+//! or a compile error may occur.
 
 use std::future::Future;
 use std::pin::Pin;
@@ -136,11 +136,11 @@ impl<T> FromRequest for Xml<T>
 where
     T: DeserializeOwned + 'static,
 {
+    type Config = XmlConfig;
     type Error = ActixError;
     #[allow(clippy::type_complexity)]
     type Future =
         Either<LocalBoxFuture<'static, Result<Self, ActixError>>, Ready<Result<Self, ActixError>>>;
-    type Config = XmlConfig;
 
     fn from_request(req: &HttpRequest, payload: &mut dev::Payload) -> Self::Future {
         let path = req.path().to_string();
