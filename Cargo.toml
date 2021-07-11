@@ -1,0 +1,29 @@
+[package]
+name = "actix-xml"
+version = "0.1.0"
+authors = ["LightQuantum <self@lightquantum.me>"]
+description = "XML extractor for actix-web"
+edition = "2018"
+repository = "https://github.com/PhotonQuantum/actix-xml"
+readme = "README.md"
+license = "MIT"
+keywords = ["actor", "actix", "xml", "reader", "parser", "parsing", "request", "extractor"]
+categories = ["parsing", "text-processing", "encoding", "web-programming", "web-programming::http-server"]
+
+[features]
+default = ["compress"]
+compress = ["actix-web/compress"]
+encoding = ["quick-xml/encoding"]
+
+[dependencies]
+actix-web = { version = "3.3.2", default-features = false }
+quick-xml = { version = "0.22", features = ["serialize"] }
+serde = "1.0"
+thiserror = "1.0"
+mime = "0.3"
+futures = "0.3"
+log = "0.4"
+
+[dev-dependencies]
+serde = { version = "1.0", features = ["derive"] }
+actix-rt = "2.2"
