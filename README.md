@@ -42,6 +42,11 @@ fn main() {
 If you've removed `compress` feature flag for actix-web, make sure to remove it by setting `default-features=false`, or
 it will be re-enabled for actix-web.
 
+## Version Support
+
+- `0.1.x` - supports `actix-web 3.3.x`
+- `0.2.0-beta.0` - supports `actix-web 4.0.0.beta.8`
+
 ## License
 
 MIT
