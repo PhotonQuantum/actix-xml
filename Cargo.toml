@@ -7,8 +7,13 @@ edition = "2018"
 repository = "https://github.com/PhotonQuantum/actix-xml"
 readme = "README.md"
 license = "MIT"
-keywords = ["actor", "actix", "xml", "reader", "parser", "parsing", "request", "extractor"]
+keywords = ["actix", "xml", "parser", "parsing", "extractor"]
 categories = ["parsing", "text-processing", "encoding", "web-programming", "web-programming::http-server"]
+exclude = [
+    ".github/*",
+    ".mergify.yml",
+    "rust-toolchain.toml",
+]
 
 [features]
 default = ["compress"]
