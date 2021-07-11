@@ -1,5 +1,8 @@
 # actix-xml
 
+[![crates.io](https://img.shields.io/crates/v/actix-xml?style=flat-square)](https://crates.io/crates/actix-xml)
+[![Documentation](https://img.shields.io/docsrs/actix-xml?style=flat-square)](https://docs.rs/actix-xml)
+
 XML extractor for actix-web.
 
 This crate provides struct `Xml` that can be used to extract typed information from request's body.
