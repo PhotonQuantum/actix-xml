@@ -9,6 +9,8 @@ This crate provides struct `Xml` that can be used to extract typed information f
 
 Under the hood, [quick-xml](https://github.com/tafia/quick-xml) is used to parse payloads.
 
+*Minimum supported rust version: 1.46.0*
+
 ## Example
 
 ```rust

@@ -4,6 +4,8 @@
 //!
 //! Under the hood, [quick-xml](https://github.com/tafia/quick-xml) is used to parse payloads.
 //!
+//! *Minimum supported rust version: 1.46.0*
+//!
 //! ## Example
 //!
 //! ```rust
