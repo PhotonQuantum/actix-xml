@@ -21,7 +21,7 @@ compress = ["actix-web/compress"]
 encoding = ["quick-xml/encoding"]
 
 [dependencies]
-actix-web = { version = "3.3.2", default-features = false }
+actix-web = { version = "3.3.3", default-features = false }
 quick-xml = { version = "0.22", features = ["serialize"] }
 serde = "1.0"
 thiserror = "1.0"
