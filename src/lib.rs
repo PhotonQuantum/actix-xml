@@ -32,9 +32,11 @@
 //! ## Features
 //!
 //! - `encoding`: support non utf-8 payload
-//! - `compress`(default): enable actix-web `compress` support
+//! - `compress-brotli`(default): enable actix-web `compress-brotli` support
+//! - `compress-gzip`(default): enable actix-web `compress-gzip` support
+//! - `compress-zstd`(default): enable actix-web `compress-zstd` support
 //!
-//! If you've removed `compress` feature flag for actix-web, make sure to remove it by setting `default-features=false`, or
+//! If you've removed one of the `compress-*` feature flag for actix-web, make sure to remove it by setting `default-features=false`, or
 //! it will be re-enabled for actix-web.
 
 use std::future::Future;
@@ -140,7 +142,6 @@ where
     #[allow(clippy::type_complexity)]
     type Future =
         Either<LocalBoxFuture<'static, Result<Self, ActixError>>, Ready<Result<Self, ActixError>>>;
-    type Config = XmlConfig;
 
     fn from_request(req: &HttpRequest, payload: &mut dev::Payload) -> Self::Future {
         let path = req.path().to_string();
@@ -181,9 +182,9 @@ where
 pub struct XmlBody<U> {
     limit: usize,
     length: Option<usize>,
-    #[cfg(feature = "compress")]
+    #[cfg(feature = "__compress")]
     stream: Option<dev::Decompress<dev::Payload>>,
-    #[cfg(not(feature = "compress"))]
+    #[cfg(not(feature = "__compress"))]
     stream: Option<dev::Payload>,
     err: Option<XMLPayloadError>,
     fut: Option<LocalBoxFuture<'static, Result<U, XMLPayloadError>>>,
@@ -202,9 +203,9 @@ where
             .and_then(|l| l.to_str().ok())
             .and_then(|s| s.parse::<usize>().ok());
 
-        #[cfg(feature = "compress")]
+        #[cfg(feature = "__compress")]
         let payload = dev::Decompress::from_headers(payload.take(), req.headers());
-        #[cfg(not(feature = "compress"))]
+        #[cfg(not(feature = "__compress"))]
         let payload = payload.take();
 
         XmlBody {
