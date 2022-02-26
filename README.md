@@ -37,15 +37,18 @@ fn main() {
 ## Features
 
 - `encoding`: support non utf-8 payload
-- `compress`(default): enable actix-web `compress` support
+- `compress-brotli`(default): enable actix-web `compress-brotli` support
+- `compress-gzip`(default): enable actix-web `compress-gzip` support
+- `compress-zstd`(default): enable actix-web `compress-zstd` support
 
-If you've removed `compress` feature flag for actix-web, make sure to remove it by setting `default-features=false`, or
-it will be re-enabled for actix-web.
+If you've removed one of the `compress-*` feature flag for actix-web, make sure to remove it by
+setting `default-features=false`, or it will be re-enabled for actix-web.
 
 ## Version Support
 
 - `0.1.x` - supports `actix-web 3.3.x`
 - `0.2.0-beta.0` - supports `actix-web 4.0.0.beta.8`
+- `0.2.0` - supports `actix-web 4.0.x`
 
 ## License
 
