@@ -35,4 +35,4 @@ log = "0.4"
 
 [dev-dependencies]
 serde = { version = "1.0", features = ["derive"] }
-actix-rt = "2.6"
+actix-rt = "2.7"
