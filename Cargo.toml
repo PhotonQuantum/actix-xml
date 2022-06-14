@@ -25,7 +25,7 @@ compress-zstd = ["actix-web/compress-zstd", "__compress"]
 encoding = ["quick-xml/encoding"]
 
 [dependencies]
-actix-web = { version = "4.0", default-features = false }
+actix-web = { version = "4.1", default-features = false }
 quick-xml = { version = "0.23", features = ["serialize"] }
 serde = "1.0"
 thiserror = "1.0"
