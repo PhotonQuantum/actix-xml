@@ -28,7 +28,7 @@ encoding = ["quick-xml/encoding"]
 actix-web = { version = "4.9", default-features = false }
 quick-xml = { version = "0.26", features = ["serialize"] }
 serde = "1.0"
-thiserror = "1.0"
+thiserror = "2.0"
 mime = "0.3"
 futures = "0.3"
 log = "0.4"
