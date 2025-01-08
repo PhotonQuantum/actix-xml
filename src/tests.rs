@@ -181,3 +181,18 @@ async fn test_with_config_in_data_wrapper() {
     let err_str = s.err().unwrap().to_string();
     assert!(err_str.contains("Xml payload size is bigger than allowed"));
 }
+
+#[actix_rt::test]
+async fn test_with_xml_and_allow_missing_content_type() {
+    let (req, mut pl) = TestRequest::default()
+        .insert_header((
+            header::CONTENT_LENGTH,
+            header::HeaderValue::from_static("25"),
+        ))
+        .set_payload(Bytes::from_static(b"<MyObject name=\"test\" />"))
+        .app_data(XmlConfig::default().allow_missing_content_type(true))
+        .to_http_parts();
+
+    let s = Xml::<MyObject>::from_request(&req, &mut pl).await;
+    assert!(s.is_ok())
+}

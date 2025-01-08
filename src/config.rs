@@ -33,6 +33,7 @@ use crate::error::XMLPayloadError;
 ///                     .content_type(|mime| {  // <- accept text/plain content type
 ///                         mime.type_() == mime::TEXT && mime.subtype() == mime::PLAIN
 ///                     })
+///                     .allow_missing_content_type(true) // allow missing content-type
 ///             )
 ///             .route(web::post().to(index))
 ///     );
@@ -43,11 +44,13 @@ use crate::error::XMLPayloadError;
 pub struct XmlConfig {
     pub(crate) limit: usize,
     content_type: Option<Arc<dyn Fn(mime::Mime) -> bool + Send + Sync>>,
+    allow_missing_content_type: bool,
 }
 
 const DEFAULT_CONFIG: XmlConfig = XmlConfig {
     limit: 262_144,
     content_type: None,
+    allow_missing_content_type: false,
 };
 
 impl Default for XmlConfig {
@@ -90,9 +93,19 @@ impl XmlConfig {
             } else {
                 Err(XMLPayloadError::ContentType)
             }
+        } else if self.allow_missing_content_type {
+            Ok(())
         } else {
             Err(XMLPayloadError::ContentType)
         }
+    }
+
+    /// Set whether to allow content-type to be missing from the request headers
+    ///
+    /// If true, the supplied request body would still be treated as XML
+    pub fn allow_missing_content_type(mut self, allow: bool) -> Self {
+        self.allow_missing_content_type = allow;
+        self
     }
 
     /// Extract payload config from app data. Check both `T` and `Data<T>`, in that order, and fall
